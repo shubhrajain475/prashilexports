@@ -104,8 +104,6 @@ export const getUserDataForDashboard = async (req, res, next) => {
   }
 };
 
-
-
 export const forgotpassword = async (req, res) => {
   const userId = req.params.userId; // Use req.params.userId instead of req.params._id
   const newPassword = req.body.newPassword;
@@ -135,8 +133,6 @@ export const forgotpassword = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-
-   
 
     res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {

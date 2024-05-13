@@ -1,7 +1,7 @@
-import multer from 'multer';
+import multer from "multer";
 import fs from "fs";
 
-const uploadDirectory = 'uploads/';
+const uploadDirectory = "uploads/";
 
 // Check if the directory exists, if not, create it
 if (!fs.existsSync(uploadDirectory)) {
@@ -15,9 +15,9 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     // specify how uploaded files should be named
-    cb(null, Date.now() + '-' + file.originalname);
-  }
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 
 // Initialize multer with storage options
- export const upload = multer({ storage: storage }).single('image');
+export const upload = multer({ storage: storage }).single("image");
