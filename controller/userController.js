@@ -106,15 +106,55 @@ export const getUserDataForDashboard = async (req, res, next) => {
   }
 };
 
+// export const forgotpassword = async (req, res) => {
+//   const userId = req.params.userId; // Use req.params.userId instead of req.params._id
+//   const newPassword = req.body.newPassword;
+//   const confirmPassword = req.body.confirmPassword;
+//   console.log(newPassword);
+//   console.log(confirmPassword);
+
+//   // Validate input
+//   if (!newPassword || !confirmPassword) {
+//     return res.status(400).json({ error: "All fields are required" });
+//   }
+
+//   if (newPassword !== confirmPassword) {
+//     return res
+//       .status(400)
+//       .json({ error: "New password and confirm password do not match" });
+//   }
+
+//   try {
+//     // Fetch user from database
+//     const hashedPassword = await bcrypt.hash(newPassword, 10);
+//     const user = await User.findByIdAndUpdate(userId, {
+//       password: hashedPassword,
+//     }); // Use findById to find user by ID
+//     console.log(user);
+
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     res.status(200).json({ message: "Password updated successfully" });
+//   } catch (error) {
+//     console.error("Error updating password:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
+
+
+
 export const forgotpassword = async (req, res) => {
-  const userId = req.params.userId; // Use req.params.userId instead of req.params._id
+  const userEmail = req.body.email; // Get the email from req.body
   const newPassword = req.body.newPassword;
   const confirmPassword = req.body.confirmPassword;
   console.log(newPassword);
   console.log(confirmPassword);
 
   // Validate input
-  if (!newPassword || !confirmPassword) {
+  if (!userEmail || !newPassword || !confirmPassword) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -125,16 +165,20 @@ export const forgotpassword = async (req, res) => {
   }
 
   try {
-    // Fetch user from database
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    const user = await User.findByIdAndUpdate(userId, {
-      password: hashedPassword,
-    }); // Use findById to find user by ID
+    // Fetch user from database by email
+    const user = await User.findOne({ email: userEmail });
     console.log(user);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+
+    // Update user's password
+    console.log(newPassword)
+    user.password=newPassword
+    // const hashedPassword = await bcrypt.hash(newPassword, 10);
+    // user.password = hashedPassword;
+    await user.save();
 
     res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
@@ -142,3 +186,4 @@ export const forgotpassword = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+

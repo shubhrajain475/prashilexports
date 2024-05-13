@@ -19,6 +19,7 @@ router.put('/photos/:photoId/caption',jwtoken,updateCaption);
 router.get("/productdashboard",jwtoken,getproductDashboard);
 router.post("/otp", generateotp);
 router.post("/verifyotp", verifyotp);
-router.put("/forgotpassword/:userId",forgotpassword);
+// router.put("/forgotpassword/:userId",forgotpassword);
+router.post("/forgotpassword",forgotpassword);
 
 export default router;
