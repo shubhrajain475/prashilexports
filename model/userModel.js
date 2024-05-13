@@ -5,7 +5,8 @@ import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
  _id: {
-  type:String
+  type:String,
+  default:mongoose.Types.ObjectId,
  },
   email: {
     type: String,
