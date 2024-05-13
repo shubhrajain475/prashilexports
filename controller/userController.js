@@ -17,6 +17,7 @@ export const signup = async (req, res, next) => {
       return res.status(400).send({
         message: "User already exist",
         sucess: false,
+       
       });
     }
     user = await User.create({
@@ -26,6 +27,7 @@ export const signup = async (req, res, next) => {
     });
     return res.status(200).send({
       message: `successful signup`,
+      UserId: user.id,
       success: true,
     });
   } catch (error) {
