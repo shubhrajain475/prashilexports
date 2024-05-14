@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import { config } from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import { jwtoken } from "./middleware/jwtMiddleware.js";
+import cors from "cors";
 
 export const app = express();
 
@@ -12,3 +13,5 @@ app.use(express.json());
 app.use('/uploads',express.static('uploads'));
 
 app.use("/api/v1", userRoute);
+
+app.use(cors());

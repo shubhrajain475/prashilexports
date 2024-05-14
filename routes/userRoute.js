@@ -25,7 +25,7 @@ router.post("/contactus", contact);
 router.get("/dashboard", jwtoken, getUserDataForDashboard);
 router.post("/photoupload", upload, jwtoken, imageupload);
 router.delete("/photos/:photoId", jwtoken, deletePhoto);
-router.put("/photos/:photoId/caption", jwtoken, updateCaption);
+router.put("/photos/:photoId/caption", jwtoken, updateCaption); 
 router.get("/productdashboard", getproductDashboard);
 router.post("/otp", generateotp);
 router.post("/verifyotp", verifyotp);

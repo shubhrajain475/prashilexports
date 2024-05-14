@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { app } from "./app.js";
 
+
 export const server = () => {
   mongoose.connect(process.env.MONGO_URI, {
     dbName: "ShivaniMam",
