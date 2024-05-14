@@ -6,6 +6,13 @@ import { jwtoken } from "./middleware/jwtMiddleware.js";
 import cors from "cors";
 
 export const app = express();
+app.use(
+    cors({
+    methods:["POST","GET","HEAD","PUT","PATCH","POST","DELETE"],
+    credentials:true
+})
+);
+
 
 config();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +21,6 @@ app.use('/uploads',express.static('uploads'));
 
 app.use("/", userRoute);
 
-app.use(cors());
 
 
 
