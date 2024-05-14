@@ -15,3 +15,7 @@ app.use('/uploads',express.static('uploads'));
 app.use("/", userRoute);
 
 app.use(cors());
+
+
+
+

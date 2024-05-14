@@ -1,17 +1,22 @@
 import mongoose from "mongoose";
 
-const userSchema3=new mongoose.Schema({
-    url:{
-        type:String,
-        required:true
+const userSchema3 = new mongoose.Schema({
+  image: {
+    client_id: {
+      type: String,
+      required: true,
     },
-    caption:{
-        type:String,
+    url: {
+      type: String,
+      required: true,
     },
-   createdAt:{
-    type:Date,
-    default:Date.now
-   }
-
-})
-export const photoupload=mongoose.model("photoupload",userSchema3);
+  },
+  caption: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+export const photoupload = mongoose.model("photoupload", userSchema3);

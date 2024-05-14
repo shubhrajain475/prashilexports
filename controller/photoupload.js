@@ -1,5 +1,5 @@
 import { photoupload } from "../model/photoupload.js";
-
+import cloudinary from "cloudinary"
 // export const imageupload = async (req, res) => {
 //     try {
 //         if (!req.file) {
@@ -56,14 +56,31 @@ export const imageupload = async (req, res) => {
 
     // Assuming you have a Photo model with a 'url' field to store the file path
     const { caption } = req.body;
-    const newPhoto = new photoupload({ url: req.file.filename, caption });
-    await newPhoto.save();
+    const  image = req.file;
+    console.log(image);
+    console.log(caption);
+
+    const img = await cloudinary.v2.uploader.upload(image.path,{
+      folder:"products"
+    })
+    console.log(img,"this is image");
+    const data=await photoupload.create({
+      image:{
+        client_id:img.public_id,
+        url:img.url
+      },
+      caption
+    })
+    console.log(data)
+
+    //   const newPhoto = new photoupload({ url: req.file.filename, caption });
+    //  await newPhoto.save();
 
     res.status(200).json({
       message: "File uploaded successfully",
-      filename: req.file.filename,
-      caption,
-      photoId: newPhoto._id,
+      data:data,
+      
+      // photoId: newPhoto._id,
     });
   } catch (error) {
     console.error(error);
