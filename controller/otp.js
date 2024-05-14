@@ -43,50 +43,46 @@ function generateNumbericOTP(length) {
   return otp;
 }
 function sendOTPEmail(email, otp) {
-  const transporter =
-    nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "shubhrajain380@gmail.com",
-       // pass: "ujzh vomm qemq hqkd",
-        pass:"drzo qfyo jujs jtzh"
-      },
-    });
-    const mailOptions={
-        from:'shubhrajain380@gmail.com',
-        to:email,
-        subject:'OTP for verification',
-        text:`Your OTP for verification is: ${otp}`,
-    };
-    transporter.sendMail(mailOptions,(error,info)=>{
-        if(error){
-            console.error('Error sending OTP email',error);
-        }
-        else{
-            console.log('Email send:',info.response);
-        }
-    })
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "shubhrajain380@gmail.com",
+      // pass: "ujzh vomm qemq hqkd",
+      pass: "drzo qfyo jujs jtzh",
+    },
+  });
+  const mailOptions = {
+    from: "shubhrajain380@gmail.com",
+    to: email,
+    subject: "OTP for verification",
+    text: `Your OTP for verification is: ${otp}`,
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending OTP email", error);
+    } else {
+      console.log("Email send:", info.response);
+    }
+  });
 }
 
-export const verifyotp=async(req,res)=>{
-    const {otp:userOTP}=req.body;
-    console.log("request otp:",userOTP);
-    try{
-        const o=await otp.findOne({otp:userOTP});
-        console.log("database otp",o);
-        if(!o){
-            return res.status(401).json({message:'otp is incorrect'});
-        }
-        const verifyotp= o.otp===userOTP;
-        console.log(o.otp);
-        console.log("verification result",verifyotp);
-        if(verifyotp){
-            res.json({message:'verify otp successfull'});
-        }
-
+export const verifyotp = async (req, res) => {
+  const { otp: userOTP } = req.body;
+  console.log("request otp:", userOTP);
+  try {
+    const o = await otp.findOne({ otp: userOTP });
+    console.log("database otp", o);
+    if (!o) {
+      return res.status(401).json({ message: "otp is incorrect" });
     }
-    catch(error){
-        console.log('error querying mongodb:',error);
-        res.status(500).json({message:'internal server error'});
+    const verifyotp = o.otp === userOTP;
+    console.log(o.otp);
+    console.log("verification result", verifyotp);
+    if (verifyotp) {
+      res.json({ message: "verify otp successfull" });
     }
-}
+  } catch (error) {
+    console.log("error querying mongodb:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
+};

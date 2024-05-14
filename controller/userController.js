@@ -17,7 +17,6 @@ export const signup = async (req, res, next) => {
       return res.status(400).send({
         message: "User already exist",
         sucess: false,
-       
       });
     }
     user = await User.create({
@@ -143,9 +142,6 @@ export const getUserDataForDashboard = async (req, res, next) => {
 //   }
 // };
 
-
-
-
 export const forgotpassword = async (req, res) => {
   const userEmail = req.body.email; // Get the email from req.body
   const newPassword = req.body.newPassword;
@@ -174,8 +170,8 @@ export const forgotpassword = async (req, res) => {
     }
 
     // Update user's password
-    console.log(newPassword)
-    user.password=newPassword
+    console.log(newPassword);
+    user.password = newPassword;
     // const hashedPassword = await bcrypt.hash(newPassword, 10);
     // user.password = hashedPassword;
     await user.save();
@@ -186,4 +182,3 @@ export const forgotpassword = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
