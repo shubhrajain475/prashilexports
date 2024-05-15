@@ -3,7 +3,7 @@ import { photoupload } from "../model/photoupload.js";
 export const getproductDashboard = async (req, res) => {
   try {
     // Fetch all photos from the database
-    const photos = await photoupload.find({}, { url: 1, caption: 1 });
+    const photos = await photoupload.find({}, { image: 1, caption: 1 });
 
     // If no photos found, return an empty array
     if (!photos || photos.length === 0) {
