@@ -48,6 +48,8 @@ const upload = multer({ dest: "uploads/" }); // Configure multer
 //     }
 // };
 
+//this is upload image code
+
 export const imageupload = async (req, res) => {
   try {
     if (!req.file) {
