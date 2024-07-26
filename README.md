@@ -2,62 +2,62 @@ Welcome to "Prashil Export" , your premier destination for high-quality spices s
 ## API Reference
 
 
-```http
+```sh
   POST /sign-up
 ```
 
 
-```http
+```sh
   POST /login
 ```
 
 
-```http
+```sh
   POST /contactus
 ```
 
 
-```http
+```sh
   GET /dashboard
 ```
 
   
-```http
+```sh
   POST /photoupload
 ```
 
 
-```http
+```sh
   DELETE /photos/:photoId
 ```
   
 
-```http
+```sh
   PUT /photos/:photoId/caption
 ```
   
 
-```http
+```sh
   GET /productdashboard
 ```
  
 
-```http
+```sh
   POST /otp
 ```
    
 
-```http
+```sh
   POST /verifyotp
 ```
    
 
-```http
+```sh
   POST /forgotpassword
 ```
    
 
-```http
+```sh
   GET /qr
 ```
 
