@@ -1,20 +1,3 @@
-// import qr from 'qrcode';
-
-// // Controller function to generate QR code for a given URL
-// export const generateQRCode = (req, res) => {
-//     const { url } = req.query;
-//     if (!url) {
-//         return res.status(400).send('https://rankyatra.com ');
-//     }
-
-//     qr.toFileStream(res, url, (err) => {
-//         if (err) {
-//             console.error('Error generating QR code:', err);
-//             return res.status(500).send('Error generating QR code');
-//         }
-//         console.log('QR code generated successfully for:', url);
-//     });
-// };
 import fs from "fs";
 import path from "path";
 import qr from "qrcode";
